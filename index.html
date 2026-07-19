@@ -13,15 +13,16 @@
         a { color: #2e8c55; }
         .highlight { background:#e7f3ea; padding: 16px; border-left: 4px solid #43a66b; margin: 16px 0; border-radius:8px; }
         .meta { color: #7a8f80; font-size: 13px; }
-        .lang { text-align:right; margin-bottom:8px; }
-        .lang a { font-size:13px; font-weight:bold; }
+        .lang { display:flex; gap:8px; justify-content:center; margin:0 0 20px; }
+        .lang a { font-size:14px; font-weight:bold; text-decoration:none; padding:8px 20px; border:1.5px solid #43a66b; border-radius:20px; color:#2e8c55; }
+        .lang a:hover { background:#e7f3ea; }
         hr { border:none; border-top:1px dashed #c4d8cb; margin:44px 0; }
         section { }
     </style>
 </head>
 <body>
 
-<div class="lang"><a href="#ko">한국어</a> · <a href="#en">English</a></div>
+<div class="lang"><a href="#ko">🇰🇷 한국어</a><a href="#en">🇺🇸 English</a></div>
 
 <!-- ================= 한국어 ================= -->
 <section id="ko">
@@ -131,5 +132,15 @@
     <p>This Privacy Policy may be updated in accordance with laws, policies, or service changes. Any changes will be posted on this page.</p>
 </section>
 
+<script>
+  // 브라우저 언어가 한국어가 아니면 영어 섹션으로 이동 (외국인은 영어부터 보이게)
+  try {
+    var lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+    if (lang.indexOf('ko') !== 0 && !location.hash) {
+      var en = document.getElementById('en');
+      if (en) en.scrollIntoView();
+    }
+  } catch (e) {}
+</script>
 </body>
 </html>
